@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-class StudentsFragment extends Fragment {
+public class StudentsFragment extends Fragment {
     private RecyclerView studentsView;
 
     public interface StudentClickListener {
@@ -39,7 +39,6 @@ class StudentsFragment extends Fragment {
         Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_students, container, false);
-
         File studentsFile = new File(requireContext().getFilesDir(), "students.txt");
         listener = new StudentsLoadTask.UIListener() {
             @Override

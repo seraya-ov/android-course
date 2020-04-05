@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private static final String PREF_NAME = "Preferences";
     private static final String KEY_LOGIN = "login";
@@ -19,6 +19,7 @@ class LoginActivity extends AppCompatActivity {
     private String realLogin = "";
     private String realPassword = "";
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -36,12 +37,16 @@ class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String login = loginEdit.getText().toString();
+                System.out.println(login);
                 String password = passwordEdit.getText().toString();
                 SharedPreferences preferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString(KEY_LOGIN, login);
                 editor.putString(KEY_PASSWORD, password);
                 editor.apply();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra(KEY_LOGIN, login);
+                startActivity(intent);
             }
         });
 
